@@ -1,0 +1,172 @@
+:root {
+  --color-white: rgb(255, 255, 255);
+  --color-white-80: rgba(255, 255, 255, 0.80);
+  --color-primary: rgb(227, 193, 22);
+  --color-secondary: rgb(29, 118, 195);
+  --color-background: rgb(5, 22, 31);
+
+  --spacer-md: var(--kemet-spacer-md);
+}
+
+html {
+  font-size: 16px;
+  font-family: 'Ubuntu', sans-serif;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  color: var(--color-white);
+  background: var(--color-background);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+a {
+  color: var(--color-secondary);
+}
+
+img {
+  max-width: 100%;
+}
+
+h1 {
+  font-size: 2rem;
+
+  span {
+    display: block;
+    font-size: 0.85rem;
+    opacity: 0.5;
+  }
+
+  svg {
+    max-width: 320px;
+    display: block;
+    margin-bottom: var(--spacer-md);
+
+    @media screen and (min-width: 769px) {
+      max-width: 640px;
+    }
+  }
+}
+
+h2 {
+  @media screen and (min-width: 769px) {
+    font-size: clamp(2rem, 8vw, 3rem);
+    margin: 0;
+  }
+}
+
+main {
+  position: relative;
+  z-index: 9;
+  flex: 1;
+  padding: 1.5rem;
+  margin-bottom: -12vh;
+  overflow-y: auto;
+  overflow-x: hidden;;
+  scroll-behavior: smooth;
+
+  > section {
+    margin-bottom: 8rem;
+
+    @media screen and (min-width: 769px) {
+      aspect-ratio: 16/9;
+      max-width: 1440px;
+      margin: auto;
+      padding: 1rem 2rem;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    overflow: unset;
+    margin-bottom: -28vh;
+  }
+}
+
+figure {
+  margin: 0;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 2rem 1rem;
+}
+
+legend {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+footer {
+  position: relative;
+  z-index: 99;
+
+  a {
+    color: var(--color-secondary);
+    text-decoration: none;;
+  }
+
+  nav {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: var(--color-white);
+
+    a {
+      border-radius: 6px;
+      padding: 4px 8px;
+      transition: all 300ms ease;
+    }
+
+    .active {
+      cursor: default;
+      color: var(--color-white);
+      background: var(--color-secondary);
+    }
+  }
+
+  p {
+    margin: 0;
+    padding-bottom: var(--spacer-md);
+    color: var(--color-background);
+    font-size: 0.7rem;
+    text-align: center;
+    background: var(--color-white);
+  }
+}
+
+kemet-rotator {
+  font-size: 2rem;
+}
+
+kemet-carousel {
+  --kemet-carousel-slides-border: 0;
+}
+
+kemet-card {
+  --kemet-card-header-border-bottom: 1px solid rgb(var(--kemet-color-primary));
+
+  max-width: none;
+  border-radius: 1rem;
+  padding-bottom: var(--spacer-md);
+
+  p {
+    padding: 0 1rem;
+    margin: 0;
+    line-height: 1.2;
+  }
+}
+
+kemet-button {
+  &[outlined] {
+    --kemet-button-color:var(--color-white-80);
+    --kemet-button-border: 1px solid var(--color-white-80);
+  }
+}

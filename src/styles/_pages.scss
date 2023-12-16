@@ -1,0 +1,219 @@
+[data-anchor="home"] {
+  display: grid;
+  grid-template-columns: 100%;;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+
+  > p {
+    padding-bottom: 10vh;
+  }
+
+  > div {
+    position: relative;
+    z-index: 99;
+  }
+
+  @media screen and (min-width: 769px) {
+    padding-bottom: 24vh;
+  }
+}
+
+[data-anchor="about"] {
+  margin-top: 2rem;
+
+  > div {
+    @media screen and (min-width: 769px) {
+      transform: translateY(-16vh);
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    max-width: 960px;
+  }
+}
+
+[data-anchor="services"] {
+  > div {
+    overflow-y: visible !important; // overwrites fullpage.js
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    list-style: none;
+
+    @media screen and (min-width: 769px) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+  }
+
+  li {
+    @media screen and (min-width: 769px) {
+      flex: 1;
+    }
+
+    &:hover {
+      @media screen and (min-width: 769px) {
+        kemet-card {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  kemet-card {
+    width: 100%;
+    transition: all 300ms ease;
+
+    @media screen and (min-width: 769px) {
+      height: 100%;
+      padding: 0 var(--spacer-md);
+
+      p {
+        display: none;
+      }
+    }
+  }
+
+  h3 {
+    @media screen and (min-width: 769px) {
+      font-size: clamp(1rem, 1vw, 1.25rem);
+    }
+  }
+
+  svg {
+    @media screen and (min-width: 769px) {
+      width: 96px;
+      height: 96px;
+    }
+  }
+
+  [aria-live] {
+    display: none;
+
+    @media screen and (min-width: 769px) {
+      display: block;
+      padding: 1rem;
+      min-height: 4.5rem;
+      border-left: 4px solid rgb(var(--kemet-color-primary));
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    justify-content: flex-start;
+    padding-top: 8vh;
+  }
+}
+
+[data-anchor="work"] {
+  kemet-carousel {
+    width: 100vw;
+    margin: 0 -1.5rem;
+
+    @media screen and (min-width: 769px) {
+      width: auto;
+      margin: auto;
+    }
+  }
+
+  kemet-button {
+    &[variant="text"] {
+      --kemet-button-color: rgb(var(--kemet-color-gray-300));
+      margin-left: -1rem;
+    }
+  }
+
+  h2 {
+    @media screen and (min-width: 769px) {
+      margin: 0;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    justify-content: flex-start;
+  }
+}
+
+[data-anchor="get-started"] {
+  fieldset {
+    > div {
+      display: flex;
+      gap: 2rem;
+      flex-direction: column;
+
+      @media screen and (min-width: 769px) {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+      }
+    }
+  }
+
+  .status {
+    display: inline-flex;
+    margin: auto;
+  }
+
+  kemet-field:has(kemet-input) {
+    @media screen and (min-width: 769px) {
+      grid-column-start: 1;
+    }
+  }
+
+  kemet-field:has(kemet-textarea) {
+    @media screen and (min-width: 769px) {
+      grid-row: 1/4;
+      grid-column-start: 2;
+
+      &::part(label) {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+      }
+
+      &::part(textarea) {
+        height: 100%;
+      }
+    }
+  }
+
+  kemet-textarea {
+    @media screen and (min-width: 769px) {
+      height: 100%;
+
+      &::part(textarea) {
+        height: 100%;
+      }
+    }
+  }
+
+  kemet-button {
+    -kemet-button-background-color: rgb(var(--kemet-color-green-800));
+    margin: 1rem;
+  }
+
+  @media screen and (min-width: 769px) {
+    justify-content: flex-start;
+    padding-top: 4vh;
+  }
+}
+
+[data-anchor="contact"] {
+  kemet-card {
+    margin: auto;
+    padding: 2rem;
+    line-height: 2;
+  }
+
+  @media screen and (min-width: 769px) {
+    justify-content: flex-start;
+    padding-top: 16vh;
+  }
+}
