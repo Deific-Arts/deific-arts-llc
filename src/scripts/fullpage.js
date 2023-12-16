@@ -3,6 +3,22 @@ import fullpage from 'fullpage.js';
 const mediaQuery = window.matchMedia('(min-width: 769px)');
 const sections = document.querySelectorAll('main > section');
 
+const disableInputKeyboardScrolling = () => {
+  document.addEventListener('kemet-input-focused', (event) => {
+    const focus = event.detail;
+    if (focus) {
+      fullpage_api.setKeyboardScrolling(false);
+    }
+  });
+
+  document.addEventListener('kemet-input-focused', (event) => {
+    const blur = !event.detail;
+    if (blur) {
+      fullpage_api.setKeyboardScrolling(true);
+    }
+  });
+};
+
 if (mediaQuery.matches) {
   sections.forEach(section => {
     section.removeAttribute('id');
@@ -30,3 +46,5 @@ if (mediaQuery.matches) {
     }
   });
 }
+
+disableInputKeyboardScrolling();
