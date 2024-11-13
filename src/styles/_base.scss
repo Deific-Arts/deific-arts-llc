@@ -94,11 +94,18 @@ fieldset {
   border: 0;
   padding: 0;
   margin: 2rem 1rem;
+  position: relative;
 }
 
 legend {
   font-size: 1.5rem;
   margin-bottom: 2rem;
+
+  @media screen and (min-width: 769px) {
+      position: absolute;
+      right: 0;
+      top: -5rem;
+    }
 }
 
 footer {
@@ -116,8 +123,11 @@ footer {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-    background: var(--color-white);
+    padding: 0 1rem;
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
 
     a {
       border-radius: 6px;
@@ -134,7 +144,7 @@ footer {
 
   p {
     margin: 0;
-    padding-bottom: var(--spacer-md);
+    padding-bottom: 0.5rem;
     color: var(--color-background);
     font-size: 0.7rem;
     text-align: center;

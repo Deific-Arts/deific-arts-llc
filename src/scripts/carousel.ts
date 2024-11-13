@@ -15,6 +15,7 @@ if (workCarousel) {
   const breakpoints = {
     769: {
       gap : 24,
+      perView: 2,
     },
   };
 

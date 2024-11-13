@@ -119,7 +119,7 @@
 
     @media screen and (min-width: 769px) {
       width: auto;
-      margin: auto;
+      margin: 4vh auto 0 auto;
     }
   }
 
@@ -136,6 +136,13 @@
     }
   }
 
+  h3 {
+    @media screen and (min-width: 769px) {
+      display: none;
+      ;
+    }
+  }
+
   @media screen and (min-width: 769px) {
     justify-content: flex-start;
   }
@@ -145,7 +152,7 @@
   fieldset {
     > div {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
       flex-direction: column;
 
       @media screen and (min-width: 769px) {
@@ -196,7 +203,7 @@
 
   kemet-button {
     -kemet-button-background-color: rgb(var(--kemet-color-green-800));
-    margin: 1rem;
+    margin: 0 1rem;
   }
 
   @media screen and (min-width: 769px) {
