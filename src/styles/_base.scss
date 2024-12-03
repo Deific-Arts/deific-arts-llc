@@ -118,16 +118,21 @@ footer {
   }
 
   nav {
-    display: flex;
+    display: none;
     gap: 0.5rem;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    width: 100%;
     padding: 0 1rem;
     position: absolute;
-    bottom: 1.5rem;
+    bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
+
+    @media screen and (min-width: 769px) {
+      display: flex;
+    }
 
     a {
       border-radius: 6px;
