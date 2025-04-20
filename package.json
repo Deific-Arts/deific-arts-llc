@@ -6,7 +6,7 @@
     "build": "tsc && vite build",
     "deploy": "node deploy.js",
     "preview": "vite preview",
-    "serve": "npx http-server dist --cors --gzip -c-1",
+    "php": "php -S localhost:8000 -t dist",
     "start": "vite --host"
   },
   "dependencies": {

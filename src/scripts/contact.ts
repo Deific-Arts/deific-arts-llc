@@ -58,7 +58,7 @@ contactForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const form = new FormData(contactForm);
-  const url = 'https://contact.hasanirogers.me/contact';
+  const url = '/contact';
 
   const bodyData = {
     user: form.get('user'),
@@ -77,15 +77,9 @@ contactForm?.addEventListener('submit', async (event) => {
 
   try {
       contactStatus.innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
-
       const response = await fetch(url, config);
       const data = await response.json() as IData;
-
-      if (data.message = 'SUCCESS') {
-        contactStatus.innerHTML = 'Your message was sent successfully!'
-      } else {
-        contactStatus.innerHTML = 'There was a problem sending your message.'
-      }
+      contactStatus.innerHTML = data.message
   } catch (error) {
     console.error(error);
   }

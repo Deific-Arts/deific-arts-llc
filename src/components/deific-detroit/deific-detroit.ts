@@ -21,7 +21,7 @@ export default class DeificDetroit extends LitElement {
 
   render() {
     return html `
-      <img src="/detroit-${this.resolution}.webp" loading="lazy" alt="The Detroit riverfront." style="display:none;" />
+      <img src="/assets/detroit-${this.resolution}.webp" loading="lazy" alt="The Detroit riverfront." style="display:none;" />
     `
   }
 
