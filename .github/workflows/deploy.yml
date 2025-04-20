@@ -9,12 +9,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 'latest'
+          extensions: mbstring, intl, pdo, curl
+          coverage: none
+
       - name: Build Site
         working-directory: ./
         run: |
           npm install
           npm run build
+
+      - name: Install Composer dependencies
+        working-directory: ./dist
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Write .env file
+        working-directory: ./dist
+        run: |
+          echo "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}" > .env
+
       - name: Deploy
+        working-directory: ./
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_DEPLOY_HOST }}
