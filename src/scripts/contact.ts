@@ -58,7 +58,7 @@ contactForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const form = new FormData(contactForm);
-  const url = '/contact';
+  const url = '/contact/';
 
   const bodyData = {
     user: form.get('user'),
