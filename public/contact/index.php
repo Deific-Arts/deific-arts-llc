@@ -1,5 +1,10 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 require '../vendor/autoload.php';
+
 $parentDir = dirname(__DIR__);
 
 $dotenv = Dotenv\Dotenv::createImmutable($parentDir);
@@ -23,37 +28,46 @@ $htmlMessage = "
   <div>Phone: $userPhone</div>
 ";
 
-$email = new \SendGrid\Mail\Mail();
-$email->setFrom($userEmail, $userName);
-$email->setSubject("$userName is interested in Deific Arts LLC");
-$email->addTo("hasani.rogers@gmail.com", "Hasani Rogers");
-$email->addTo("contact@deificarts.com", "Deific Arts LLC");
-$email->addContent("text/plain", $userMessage);
-$email->addContent("text/html", $htmlMessage);
-
-$sendgrid = new \SendGrid($_ENV['SENDGRID_API_KEY']);
-
-header('Content-Type: application/json');
+$mail = new PHPMailer(true);
 
 try {
-  $response = $sendgrid->send($email);
-  $statusCode = $response->statusCode();
+    // Server settings
+    $mail->isSMTP();
+    $mail->Host       = $_ENV['MAIL_HOST'];
+    $mail->SMTPAuth   = true;
+    $mail->Username   = $_ENV['MAIL_USER'];
+    $mail->Password   = $_ENV['MAIL_PASS'];
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = 587;
 
-  if ($statusCode >= 200 && $statusCode < 300) {
-    echo json_encode([
-      'success' => true,
-      'message' => 'Email sent successfully.',
-      'status' => $statusCode
-    ]);
-  } else {
-    $errorBody = json_decode($response->body(), true);
+    // Recipients
+    $mail->setFrom('dev@hasanirogers.me', 'Hasani Rogers');
+    $mail->addAddress('dev@hasanirogers.me', 'Hasani Rogers');
+    $mail->addAddress('contact@deificarts.com', 'Deific Arts LLC');
 
-    echo json_encode([
-      'success' => false,
-      'message' => $errorBody['errors'][0]['message'] ?? 'Failed to send message.',
-      'status' => $statusCode
-    ]);
-  }
+    // Content
+    $mail->isHTML(true);
+    $mail->Subject = "$userName is interested in Deific Arts LLC";
+    $mail->Body    = $htmlMessage;
+    $mail->AltBody = $userMessage;
+
+    $mail->send();
+
+    if ($mail->send()) {
+      http_response_code(200);
+      echo json_encode([
+        'success' => true,
+        'message' => 'Email sent successfully.',
+        'status' => 200
+      ]);
+    } else {
+      http_response_code(400);
+      echo json_encode([
+        'success' => true,
+        'message' => 'There was an error sending your email.',
+        'status' => 400
+      ]);
+    }
 } catch (Exception $e) {
   http_response_code(500);
   echo json_encode([

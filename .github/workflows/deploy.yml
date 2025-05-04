@@ -30,7 +30,11 @@ jobs:
       - name: Write .env file
         working-directory: ./dist
         run: |
-          echo "SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}" > .env
+          echo "
+            MAIL_HOST=${{ secrets.MAIL_HOST }}
+            MAIL_USER=${{ secrets.MAIL_USER }}
+            MAIL_PASS=${{ secrets.MAIL_PASS }}
+          " > .env
 
       - name: Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4

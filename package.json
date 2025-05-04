@@ -6,7 +6,7 @@
     "build": "tsc && vite build",
     "deploy": "node deploy.js",
     "preview": "vite preview",
-    "php": "php -S localhost:8000 -t dist",
+    "php": "npm run build && php -S localhost:8000 -t dist",
     "start": "vite --host"
   },
   "dependencies": {
