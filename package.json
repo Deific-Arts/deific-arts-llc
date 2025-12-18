@@ -1,22 +1,23 @@
 {
   "name": "deific-arts-llc",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "build": "tsc && vite build",
     "deploy": "node deploy.js",
+    "dev": "vite --host",
     "preview": "vite preview",
-    "php": "npm run build && php -S localhost:8000 -t dist",
-    "start": "vite --host"
+    "php": "npm run build && php -S localhost:8000 -t dist"
   },
   "dependencies": {
-    "fullpage.js": "^4.0.20",
-    "kemet-ui": "^3.0.0",
-    "lit": "^3.1.0"
+    "lit": "^3.1.0",
+    "motion": "^12.23.26",
+    "snapsvg": "^0.5.1",
+    "typewriter-effect": "^2.22.0"
   },
   "devDependencies": {
+    "@types/snapsvg": "^0.5.8",
     "sass": "^1.69.5",
-    "tslib": "^2.6.2",
     "typescript": "^5.2.2",
     "vite": "^5.0.0",
     "vite-plugin-compression2": "^0.11.0"
