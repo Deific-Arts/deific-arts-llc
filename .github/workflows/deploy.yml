@@ -10,12 +10,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 'latest'
-          extensions: mbstring, intl, pdo, curl
-          coverage: none
+      # - name: Setup PHP
+      #   uses: shivammathur/setup-php@v2
+      #   with:
+      #     php-version: 'latest'
+      #     extensions: mbstring, intl, pdo, curl
+      #     coverage: none
 
       - name: Build Site
         working-directory: ./
@@ -23,18 +23,18 @@ jobs:
           npm install
           npm run build
 
-      - name: Install Composer dependencies
-        working-directory: ./dist
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+      # - name: Install Composer dependencies
+      #   working-directory: ./dist
+      #   run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
-      - name: Write .env file
-        working-directory: ./dist
-        run: |
-          echo "
-            MAIL_HOST=${{ secrets.MAIL_HOST }}
-            MAIL_USER=${{ secrets.MAIL_USER }}
-            MAIL_PASS=${{ secrets.MAIL_PASS }}
-          " > .env
+      # - name: Write .env file
+      #   working-directory: ./dist
+      #   run: |
+      #     echo "
+      #       MAIL_HOST=${{ secrets.MAIL_HOST }}
+      #       MAIL_USER=${{ secrets.MAIL_USER }}
+      #       MAIL_PASS=${{ secrets.MAIL_PASS }}
+      #     " > .env
 
       - name: Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
