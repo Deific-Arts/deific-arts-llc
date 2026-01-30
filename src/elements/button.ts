@@ -117,106 +117,112 @@ type SVGButtonResolvedOptions = {
   easing: Easing;
 };
 
+function doStuffForSnapSvg() {
+  // Simple typed "merge" helper
+  const merge = <T extends Record<string, any>, U extends Record<string, any>>(
+    a: T,
+    b: U
+  ): T & U => {
+    (Object.keys(b) as Array<keyof U>).forEach((key) => {
+      (a as any)[key] = b[key];
+    });
+    return a as T & U;
+  };
+
+  class SVGButton {
+    el: HTMLButtonElement;
+    options: SVGButtonResolvedOptions;
+
+    private shapeEl!: HTMLSpanElement;
+    private pathEl!: any;
+    private paths!: { reset: string; active: string };
+
+    constructor(el: HTMLButtonElement, options?: SVGButtonOptions) {
+      this.el = el;
+
+      const defaults: SVGButtonResolvedOptions = {
+        speed: { reset: 800, active: 150 },
+        easing: { reset: mina.elastic, active: mina.easein },
+      };
+
+      // merge defaults + options (including nested speed/easing)
+      this.options = merge(defaults, {}) as SVGButtonResolvedOptions;
+      if (options?.speed) this.options.speed = merge(this.options.speed, options.speed);
+      if (options?.easing) this.options.easing = merge(this.options.easing, options.easing);
+
+      this.init();
+    }
+
+    private init() {
+      const shapeEl = this.el.querySelector<HTMLSpanElement>("span.morph-shape");
+      if (!shapeEl) return;
+      this.shapeEl = shapeEl;
+
+      const svg = this.shapeEl.querySelector<SVGSVGElement>("svg");
+      if (!svg) return;
+
+      const s = Snap(svg);
+      this.pathEl = s.select("path");
+      this.paths = {
+        reset: this.pathEl.attr("d"),
+        active: this.shapeEl.getAttribute("data-morph-active") ?? "",
+      };
+
+      this.initEvents();
+    }
+
+    private initEvents() {
+      const down = this.down.bind(this);
+      const up = this.up.bind(this);
+
+      this.el.addEventListener("mousedown", down);
+      this.el.addEventListener("touchstart", down, { passive: true });
+
+      this.el.addEventListener("mouseup", up);
+      this.el.addEventListener("touchend", up);
+      this.el.addEventListener("mouseout", up);
+    }
+
+    private down() {
+      this.pathEl
+        .stop()
+        .animate({ path: this.paths.active }, this.options.speed.active, this.options.easing.active);
+    }
+
+    private up() {
+      this.pathEl
+        .stop()
+        .animate({ path: this.paths.reset }, this.options.speed.reset, this.options.easing.reset);
+    }
+  }
+
+  // IMPORTANT: since this is a web component, scope to *this* component
+  // (so multiple instances don't conflict)
+  const root = document.querySelector("deific-button") as HTMLElement;
+
+  root
+    .querySelectorAll<HTMLButtonElement>("button.button--effect-1")
+    .forEach((el) => new SVGButton(el));
+
+  root
+    .querySelectorAll<HTMLButtonElement>("button.button--effect-2")
+    .forEach(
+      (el) =>
+        new SVGButton(el, {
+          speed: { reset: 650, active: 650 },
+          easing: { reset: mina.elastic, active: mina.elastic },
+        })
+    );
+}
+
 @customElement("deific-button")
 export default class DeificButton extends LitElement {
   static styles = [styles];
 
   firstUpdated() {
-    // Simple typed "merge" helper
-    const merge = <T extends Record<string, any>, U extends Record<string, any>>(
-      a: T,
-      b: U
-    ): T & U => {
-      (Object.keys(b) as Array<keyof U>).forEach((key) => {
-        (a as any)[key] = b[key];
-      });
-      return a as T & U;
-    };
-
-    class SVGButton {
-      el: HTMLButtonElement;
-      options: SVGButtonResolvedOptions;
-
-      private shapeEl!: HTMLSpanElement;
-      private pathEl!: any;
-      private paths!: { reset: string; active: string };
-
-      constructor(el: HTMLButtonElement, options?: SVGButtonOptions) {
-        this.el = el;
-
-        const defaults: SVGButtonResolvedOptions = {
-          speed: { reset: 800, active: 150 },
-          easing: { reset: mina.elastic, active: mina.easein },
-        };
-
-        // merge defaults + options (including nested speed/easing)
-        this.options = merge(defaults, {}) as SVGButtonResolvedOptions;
-        if (options?.speed) this.options.speed = merge(this.options.speed, options.speed);
-        if (options?.easing) this.options.easing = merge(this.options.easing, options.easing);
-
-        this.init();
-      }
-
-      private init() {
-        const shapeEl = this.el.querySelector<HTMLSpanElement>("span.morph-shape");
-        if (!shapeEl) return;
-        this.shapeEl = shapeEl;
-
-        const svg = this.shapeEl.querySelector<SVGSVGElement>("svg");
-        if (!svg) return;
-
-        const s = Snap(svg);
-        this.pathEl = s.select("path");
-        this.paths = {
-          reset: this.pathEl.attr("d"),
-          active: this.shapeEl.getAttribute("data-morph-active") ?? "",
-        };
-
-        this.initEvents();
-      }
-
-      private initEvents() {
-        const down = this.down.bind(this);
-        const up = this.up.bind(this);
-
-        this.el.addEventListener("mousedown", down);
-        this.el.addEventListener("touchstart", down, { passive: true });
-
-        this.el.addEventListener("mouseup", up);
-        this.el.addEventListener("touchend", up);
-        this.el.addEventListener("mouseout", up);
-      }
-
-      private down() {
-        this.pathEl
-          .stop()
-          .animate({ path: this.paths.active }, this.options.speed.active, this.options.easing.active);
-      }
-
-      private up() {
-        this.pathEl
-          .stop()
-          .animate({ path: this.paths.reset }, this.options.speed.reset, this.options.easing.reset);
-      }
-    }
-
-    // IMPORTANT: since this is a web component, scope to *this* component
-    // (so multiple instances don't conflict)
-    const root = this.renderRoot as HTMLElement;
-
-    root
-      .querySelectorAll<HTMLButtonElement>("button.button--effect-1")
-      .forEach((el) => new SVGButton(el));
-
-    root
-      .querySelectorAll<HTMLButtonElement>("button.button--effect-2")
-      .forEach(
-        (el) =>
-          new SVGButton(el, {
-            speed: { reset: 650, active: 650 },
-            easing: { reset: mina.elastic, active: mina.elastic },
-          })
-      );
+    setTimeout(() => {
+      doStuffForSnapSvg();
+    }, 1);
   }
 
   render() {

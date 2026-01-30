@@ -2,7 +2,7 @@
 import { LitElement, html, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { animate, scroll } from "motion";
-import { repeat } from '../utilities/repeat';
+import { repeat } from '../scripts/repeat';
 
 type TypeAxis = 'x' | 'y';
 type TypeScrollDirection = 'forward' | 'backward';

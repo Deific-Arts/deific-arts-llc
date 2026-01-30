@@ -1,6 +1,6 @@
 import Typewriter from 'typewriter-effect/dist/core';
-import { isElementInView } from "../utilities/intersection";
-import { deepLink } from "../utilities/navigation";
+import { isElementInView } from "./intersection";
+import { deepLink } from "./navigation";
 
 const inViewElements = () => {
   const deificHome = document.querySelector('deific-home') as HTMLElement;
@@ -49,10 +49,10 @@ const inViewElements = () => {
 }
 
 const scrollToCurrent = () => {
-    const { pathname } = window.location;
-    const element = pathname.replace(/\//g, '');
-    const target = document.querySelector(`deific-${element}`);
-    target && target.scrollIntoView({ behavior: 'smooth' });
+  const { pathname } = window.location;
+  const element = pathname.replace(/\//g, '');
+  const target = document.querySelector(`deific-${element}`);
+  target && target.scrollIntoView({ behavior: 'smooth' });
 }
 
 const iBuild = () => {
@@ -70,6 +70,7 @@ const iBuild = () => {
 const initApp = () => {
   inViewElements();
   scrollToCurrent();
+  console.log(window.location.pathname);
 }
 
 document.addEventListener('DOMContentLoaded', initApp);
