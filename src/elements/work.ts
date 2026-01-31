@@ -14,6 +14,7 @@ export interface IScjScrollShowProps {
 const styles = css`
   :host {
     display: block;
+    height: auto;
   }
 
   section {

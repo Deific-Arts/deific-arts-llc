@@ -69,34 +69,3 @@ pre code {
   padding: 1.25rem 1.5rem;
 }
 
-footer {
-  display: block;
-  position: fixed;
-  width: 100%;
-  height: auto;
-  bottom: 0;
-  padding: 0;
-  margin: 0;
-
-  & > * {
-    padding: 0;
-  }
-
-  & > section {
-    background: var(--color-white);
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  p {
-    color: var(--color-background);
-  }
-
-  nav {
-    display: flex;
-    gap: 1rem;
-  }
-}

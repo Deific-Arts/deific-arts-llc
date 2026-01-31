@@ -77,7 +77,6 @@ const iBuild = () => {
 const initApp = () => {
   inViewElements();
   scrollToCurrent();
-  console.log(window.location.pathname);
 }
 
 document.addEventListener('DOMContentLoaded', initApp);
@@ -86,6 +85,6 @@ document.querySelectorAll('footer nav a, [href*=consultation]').forEach((link) =
   link.addEventListener('click', (event) => {
     event.preventDefault();
     const slug = link.getAttribute('href') ?? '/';
-    deepLink(event, slug.replace('/', ''));
+    deepLink(event, slug);
   })
 })

@@ -8,7 +8,7 @@ const posts = (await getCollection('blog')).sort(
 );
 ---
 
-<deific-blog>
+<deific-blog class="page">
   <section>
     <h2>Latest Blog</h2>
     <deific-blog-cards>
@@ -33,6 +33,19 @@ const posts = (await getCollection('blog')).sort(
   </section>
 </deific-blog>
 <style>
+
+  deific-blog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    width: 100%;
+    height: calc(100vh - 230px);
+    scroll-snap-align: start;
+    text-align: center;
+    position: relative;
+  }
+
   deific-blog-cards {
     display: grid;
     gap: 2rem;

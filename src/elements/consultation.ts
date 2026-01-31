@@ -4,6 +4,8 @@ import { customElement } from 'lit/decorators.js';
 const styles = css`
   :host {
     display: block;
+    height: 90vh;
+    z-index: 1;
   }
 
   :host([mode="edit"]) {
@@ -25,9 +27,9 @@ class DeificConsultation extends LitElement {
     mode: { type: String }
   };
 
-  url: string | null = null;
-  height: string | null = null;
-  minWidth: string | null = null;
+  url: string = '';
+  height: string = '90vh';
+  minWidth: string = '100%';
   mode: 'edit' | 'save' = 'save';
 
   connectedCallback() {
