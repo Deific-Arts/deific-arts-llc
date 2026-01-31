@@ -9,6 +9,7 @@ const inViewElements = () => {
   const deificWork = document.querySelector('deific-work') as HTMLElement;
   const deificGetStarted = document.querySelector('deific-consultation') as HTMLElement;
   const deificContact = document.querySelector('deific-contact') as HTMLElement;
+  const deificBlog = document.querySelector('deific-blog') as HTMLElement;
 
   deificHome && isElementInView(deificHome, (inView) => {
     if (inView) {
@@ -44,6 +45,12 @@ const inViewElements = () => {
   deificContact && isElementInView(deificContact, (inView) => {
     if (inView) {
       window.history.replaceState(null, '', '/contact/');
+    }
+  }, { threshold: .75 });
+
+  deificBlog && isElementInView(deificBlog, (inView) => {
+    if (inView) {
+      window.history.replaceState(null, '', '/blog/');
     }
   }, { threshold: .75 });
 }

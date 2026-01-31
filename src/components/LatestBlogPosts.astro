@@ -1,0 +1,68 @@
+
+---
+import { getCollection } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<deific-blog>
+  <section>
+    <h2>Latest Blog</h2>
+    <deific-blog-cards>
+      {
+        posts.map((post, index) => {
+          if (index > 2) return null;
+          return (
+            <deific-blog-card>
+              <a href={`/blog/${post.id}/`}>
+                <h3>{post.data.title}</h3>
+                <span class="date">
+                  <kemet-icon-bootstrap icon="calendar"></kemet-icon-bootstrap>&nbsp;
+                  <FormattedDate date={post.data.date} />
+                </span>
+                <p>{ post.data.excerpt }</p>
+              </a>
+            </deific-blog-card>
+          );
+        })
+      }
+    </deific-blog-cards>
+  </section>
+</deific-blog>
+<style>
+  deific-blog-cards {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 2rem;
+  }
+
+  deific-blog-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid #ffffff20;
+    border-radius: 1rem;
+
+    h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.25rem;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    span {
+      color: #ffffff90;
+    }
+
+    p {
+      color: var(--color-white);
+      margin-top: 1.5rem;
+    }
+  }
+</style>

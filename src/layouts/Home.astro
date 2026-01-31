@@ -2,6 +2,7 @@
 import '../styles/home.scss';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
+import LatestBlogPosts from '../components/LatestBlogPosts.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../scripts/consts';
 ---
 
@@ -74,6 +75,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../scripts/consts';
           <p>A company I partner with to provide web development services.</p>
         </div>
       </deific-work>
+      <LatestBlogPosts />
       <deific-consultation url="https://calendly.com/contact-deificarts/consultation"></deific-consultation>
       <Footer />
     </main>
