@@ -43,5 +43,6 @@ jobs:
           username: ${{ secrets.FTP_DEPLOY_USERNAME }}
           password: ${{ secrets.FTP_DEPLOY_PASSWORD }}
           port: ${{ secrets.FTP_DEPLOY_PORT }}
+          protocol: ftps
           local-dir: './dist/'
           server-dir: '/domains/deificarts.com/public_html/'
