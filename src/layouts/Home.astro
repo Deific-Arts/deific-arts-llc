@@ -69,9 +69,10 @@ import '../styles/_vendor.scss';
         </div>
       </deific-work>
       <LatestBlogPosts />
+      <div style="height: 33vh;"></div>
       <deific-consultation url="https://calendly.com/contact-deificarts/consultation" class="page"></deific-consultation>
+      <Footer />
     </main>
-    <Footer />
     <script src="https://unpkg.com/snapsvg@0.5.1/dist/snap.svg-min.js" defer></script>
     <script>
       // elements
@@ -138,6 +139,13 @@ import '../styles/_vendor.scss';
           width: 100%;
           max-width: 66vw;
           text-align: right;
+        }
+      }
+
+      deific-consultation {
+        z-index: 999;
+        @media screen and (width > 768px) {
+          z-index: 1;
         }
       }
 

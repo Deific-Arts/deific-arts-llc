@@ -2,12 +2,6 @@ import { html, css, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
 const styles = css`
-  :host {
-    display: block;
-    height: 90vh;
-    z-index: 1;
-  }
-
   :host([mode="edit"]) {
     color: white;
     padding: 0.5rem 1rem;
@@ -28,7 +22,7 @@ class DeificConsultation extends LitElement {
   };
 
   url: string = '';
-  height: string = '90vh';
+  height: string = '100%';
   minWidth: string = '100%';
   mode: 'edit' | 'save' = 'save';
 
