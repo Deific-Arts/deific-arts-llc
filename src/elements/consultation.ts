@@ -2,10 +2,6 @@ import { html, css, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
 const styles = css`
-  :host {
-    display: block;
-  }
-
   :host([mode="edit"]) {
     color: white;
     padding: 0.5rem 1rem;
@@ -25,9 +21,9 @@ class DeificConsultation extends LitElement {
     mode: { type: String }
   };
 
-  url: string | null = null;
-  height: string | null = null;
-  minWidth: string | null = null;
+  url: string = '';
+  height: string = '100%';
+  minWidth: string = '100%';
   mode: 'edit' | 'save' = 'save';
 
   connectedCallback() {

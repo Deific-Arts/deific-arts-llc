@@ -64,72 +64,8 @@ h2 {
   }
 }
 
-main {
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-  height: 100vh;
-  position: relative;
-  z-index: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  & > * {
-    display: flex;
-    padding: 1rem;
-    width: 100%;
-    height: calc(100vh - 230px);
-    scroll-snap-align: start;
-    text-align: center;
-    position: relative;
-  }
-
-  & > * > * {
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    @media (min-width: 1024px) {
-      padding: 2rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-
-  }
-}
-
-footer {
+pre code {
   display: block;
-  position: fixed;
-  width: 100%;
-  height: auto;
-  bottom: 0;
-  padding: 0;
-  margin: 0;
-
-  & > * {
-    padding: 0;
-  }
-
-  & > section {
-    background: var(--color-white);
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  p {
-    color: var(--color-background);
-  }
-
-  nav {
-    display: flex;
-    gap: 1rem;
-  }
+  padding: 1.25rem 1.5rem;
 }
+

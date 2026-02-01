@@ -1,25 +1,24 @@
 {
-  "name": "deific-arts-llc",
-  "private": true,
-  "version": "1.0.0",
+  "name": "temp",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "build": "tsc && vite build",
-    "deploy": "node deploy.js",
-    "dev": "vite --host",
-    "preview": "vite preview",
-    "php": "npm run build && php -S localhost:8000 -t dist"
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "lit": "^3.1.0",
-    "motion": "^12.23.26",
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
+    "astro": "^5.17.1",
+    "lit": "^3.3.2",
+    "motion": "^12.29.2",
+    "sass": "^1.97.3",
+    "sharp": "^0.34.3",
     "snapsvg": "^0.5.1",
+    "snapsvg-cjs": "^0.0.6",
     "typewriter-effect": "^2.22.0"
-  },
-  "devDependencies": {
-    "@types/snapsvg": "^0.5.8",
-    "sass": "^1.69.5",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.0",
-    "vite-plugin-compression2": "^0.11.0"
   }
 }

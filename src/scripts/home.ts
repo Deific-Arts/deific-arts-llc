@@ -1,6 +1,6 @@
 import Typewriter from 'typewriter-effect/dist/core';
-import { isElementInView } from "../utilities/intersection";
-import { deepLink } from "../utilities/navigation";
+import { isElementInView } from "./intersection";
+import { deepLink } from "./navigation";
 
 const inViewElements = () => {
   const deificHome = document.querySelector('deific-home') as HTMLElement;
@@ -9,6 +9,7 @@ const inViewElements = () => {
   const deificWork = document.querySelector('deific-work') as HTMLElement;
   const deificGetStarted = document.querySelector('deific-consultation') as HTMLElement;
   const deificContact = document.querySelector('deific-contact') as HTMLElement;
+  const deificBlog = document.querySelector('deific-blog') as HTMLElement;
 
   deificHome && isElementInView(deificHome, (inView) => {
     if (inView) {
@@ -46,13 +47,19 @@ const inViewElements = () => {
       window.history.replaceState(null, '', '/contact/');
     }
   }, { threshold: .75 });
+
+  deificBlog && isElementInView(deificBlog, (inView) => {
+    if (inView) {
+      window.history.replaceState(null, '', '/blog/');
+    }
+  }, { threshold: .75 });
 }
 
 const scrollToCurrent = () => {
-    const { pathname } = window.location;
-    const element = pathname.replace(/\//g, '');
-    const target = document.querySelector(`deific-${element}`);
-    target && target.scrollIntoView({ behavior: 'smooth' });
+  const { pathname } = window.location;
+  const element = pathname.replace(/\//g, '');
+  const target = document.querySelector(`deific-${element}`);
+  target && target.scrollIntoView({ behavior: 'smooth' });
 }
 
 const iBuild = () => {
@@ -78,6 +85,6 @@ document.querySelectorAll('footer nav a, [href*=consultation]').forEach((link) =
   link.addEventListener('click', (event) => {
     event.preventDefault();
     const slug = link.getAttribute('href') ?? '/';
-    deepLink(event, slug.replace('/', ''));
+    deepLink(event, slug);
   })
 })
