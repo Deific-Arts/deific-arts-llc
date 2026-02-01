@@ -30,27 +30,45 @@ const posts = (await getCollection('blog')).sort(
         })
       }
     </deific-blog-cards>
+    <p><a href="/blog/all">View all blog posts</a></p>
+    <br /><br />
   </section>
 </deific-blog>
 <style>
+  section {
+    height: 100%;
+    overflow: auto;
+    padding-bottom: 256px;
+    @media(width > 768px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
 
   deific-blog {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
     width: 100%;
-    height: calc(100vh - 230px);
+    height: 100vh;
     scroll-snap-align: start;
     text-align: center;
     position: relative;
+    overflow: auto;
   }
 
   deific-blog-cards {
-    display: grid;
+    display: flex;
     gap: 2rem;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 2rem;
+    flex-direction: column;
+    margin: 2rem;
+
+    @media (width > 768px) {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
 
   deific-blog-card {
@@ -67,6 +85,7 @@ const posts = (await getCollection('blog')).sort(
 
     a {
       text-decoration: none;
+      white-space: normal;
     }
 
     span {

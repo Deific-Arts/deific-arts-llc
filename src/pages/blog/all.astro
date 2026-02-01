@@ -52,6 +52,7 @@ const posts = (await getCollection('blog')).sort(
         border: 1px solid #ffffff20;
         padding: 1rem;
         border-radius: 1rem;
+        white-space: normal;
 
         p {
           text-align: justify;
@@ -65,13 +66,17 @@ const posts = (await getCollection('blog')).sort(
       }
 
       ul {
-        display: grid;
+        display: flex;
         gap: 2rem;
-        grid-template-columns: 1fr 1fr 1fr;
+        flex-direction: column;
         list-style: none;
         margin: 2rem auto;
-        padding: 0 0 256px 0;
+        padding: 0 2rem 256px 2rem;
         max-width: 1280px;
+        @media (width > 768px) {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+        }
       }
 
       li {
