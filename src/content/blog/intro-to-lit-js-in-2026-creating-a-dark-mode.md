@@ -13,7 +13,7 @@ excerpt: The very first thing I blogged about was creating a dark mode in Lit. I
 
 For this blog I’ll be covering a StackBlitz demo I put together. [You can find the demo here](https://stackblitz.com/edit/vitejs-vite-tj422dv7) and below.
 
-<iframe src="https://stackblitz.com/edit/vitejs-vite-tj422dv7?ctl=1&embed=1&file=src%2Felements%2Fmy-app%2Fmy-app.ts" style="aspect-ratio:16/9;"></iframe>
+<iframe src="https://stackblitz.com/edit/dark-mode-toggle-with-lit?ctl=1&embed=1&file=src%2Findex.css" style="aspect-ratio:16/9;"></iframe>
 
 Once again there are two primary areas of concern when creating a dark mode in Lit.
 
