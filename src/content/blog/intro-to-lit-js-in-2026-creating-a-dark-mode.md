@@ -11,7 +11,7 @@ tags:
 excerpt: The very first thing I blogged about was creating a dark mode in Lit. I wrote that blog six years ago. Here I revisit the topic with more modern updates for 2026. This is a beginner friendly blog. I’ll write more about advanced theming practices in a practical app later.
 ---
 
-For this blog I’ll be covering a StackBlitz demo I put together. [You can find the demo here](https://stackblitz.com/edit/vitejs-vite-tj422dv7) and below.
+For this blog I’ll be covering a StackBlitz demo I put together. [You can find the demo here](https://stackblitz.com/edit/dark-mode-toggle-with-lit) and below.
 
 <iframe src="https://stackblitz.com/edit/dark-mode-toggle-with-lit?ctl=1&embed=1&file=src%2Findex.css" style="aspect-ratio:16/9;"></iframe>
 
