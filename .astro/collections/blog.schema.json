@@ -41,6 +41,9 @@
             "type": "string"
           }
         },
+        "banner": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }
