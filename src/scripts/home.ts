@@ -81,7 +81,7 @@ const initApp = () => {
 
 document.addEventListener('DOMContentLoaded', initApp);
 
-document.querySelectorAll('footer nav a, [href*=consultation]').forEach((link) => {
+document.querySelectorAll('footer nav a').forEach((link) => {
   link.addEventListener('click', (event) => {
     event.preventDefault();
     const slug = link.getAttribute('href') ?? '/';
