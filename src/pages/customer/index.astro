@@ -72,7 +72,13 @@ import DefaultLayout from '../../layouts/Default.astro';
       & > div {
         margin: 2rem 0;
         display: flex;
-        gap: 2rem; /* hmmm */
+        gap: 2rem;
+        flex-direction: column;
+
+        @media (width > 1024px) {
+
+          flex-direction: row;
+        }
       }
 
       figure {
